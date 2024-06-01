@@ -66,6 +66,14 @@ func (lr *limitedReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
+type updateError struct {
+	Message string
+}
+
+func (e *updateError) Error() string {
+	return fmt.Sprintf("update error: %s", e.Message)
+}
+
 // LimitReader wraps Reader to make it's Reader stop with ErrLimitReached after
 // n bytes read.
 func LimitReader(r io.Reader, n int64) (limited io.Reader, err error) {
