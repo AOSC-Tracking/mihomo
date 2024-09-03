@@ -14,7 +14,6 @@ import (
 
 func upgradeRouter() http.Handler {
 	r := chi.NewRouter()
-	r.Post("/", upgradeCore)
 	r.Post("/ui", updateUI)
 	r.Post("/geo", updateGeoDatabases)
 	return r
