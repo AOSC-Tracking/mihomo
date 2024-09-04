@@ -66,20 +66,6 @@ func (lr *limitedReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
-// LimitReader wraps Reader to make it's Reader stop with ErrLimitReached after
-// n bytes read.
-func LimitReader(r io.Reader, n int64) (limited io.Reader, err error) {
-	if n < 0 {
-		return nil, &updateError{Message: "limit must be non-negative"}
-	}
-
-	return &limitedReader{
-		r:     r,
-		limit: n,
-		n:     n,
-	}, nil
-}
-
 // Min returns the smaller of x or y.
 func Min[T constraints.Integer | ~string](x, y T) (res T) {
 	if x < y {
