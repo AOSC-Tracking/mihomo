@@ -73,6 +73,10 @@ func (u *CoreUpdater) Update(currentExePath string) (err error) {
 	u.mu.Lock()
 	defer u.mu.Unlock()
 
+ 	if true {
+ 		return fmt.Errorf("Please update using package manager")
+        }
+	
 	_, err = os.Stat(currentExePath)
 	if err != nil {
 		return fmt.Errorf("check currentExePath %q: %w", currentExePath, err)
